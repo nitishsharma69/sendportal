@@ -3,4 +3,8 @@ image:
 
 tasks:
   - init: >
-      composer install
+      docker-compose up -d &&
+      composer install &&
+      echo "Waiting for MySQL to be ready..." &&
+      sleep 15 &&
+      php artisan migrate --seed
